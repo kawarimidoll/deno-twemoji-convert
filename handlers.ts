@@ -1,4 +1,4 @@
-/// <reference path="./_deploy.d.ts" />
+const VERSION = "13.1.0";
 
 export function errResponse(
   status: number,
@@ -31,16 +31,11 @@ export async function handleApi(
     return errResponse(400, "Invalid emoji parameter");
   }
 
-  let version = searchParams.get("version") || "";
-  if (!/^\d+\.\d+\.\d$/.test(version)) {
-    // use latest version
-    version = "13.1.0";
-  }
+  const codePoint = [...emoji].map((x) => x.codePointAt(0)?.toString(16))[0];
+  console.log({ emoji, codePoint });
 
-  const p = [...emoji].map((x) => x.codePointAt(0)?.toString(16))[0];
-  console.log({ emoji, version, p });
-
-  const twemojiURL = `https://twemoji.maxcdn.com/v/${version}/72x72/${p}.png`;
+  const twemojiURL =
+    `https://twemoji.maxcdn.com/v/${VERSION}/72x72/${codePoint}.png`;
 
   const res = await fetch(twemojiURL);
   // confirm to close resource
