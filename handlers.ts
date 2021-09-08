@@ -24,7 +24,10 @@ export async function handleJs() {
 }
 
 export async function handleApi(searchParams: URLSearchParams) {
-  const emoji = searchParams.get("emoji") || "";
+  const emoji = searchParams.get("emoji");
+  if (!emoji) {
+    return errResponse(400, "Invalid emoji parameter.");
+  }
   let version = searchParams.get("version") || "";
   if (!/^\d+\.\d+\.\d$/.test(version)) {
     // use latest version
@@ -36,6 +39,8 @@ export async function handleApi(searchParams: URLSearchParams) {
   const twemojiURL = `https://twemoji.maxcdn.com/v/${version}/72x72/${p}.png`;
 
   const res = await fetch(twemojiURL);
+  // confirm to close resource
+  await res.text();
   if (res.ok) {
     return new Response(twemojiURL);
   }
