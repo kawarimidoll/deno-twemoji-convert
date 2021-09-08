@@ -3,7 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>emoji to twemoji</title>
+    <title>deno-twemoji-convert</title>
+    <meta property="og:url" content="https://twemoji.deno.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="deno-twemoji-convert" />
+    <meta
+      property="og:description"
+      content="Convert emoji to twemoji by Deno🦕"
+    />
+    <meta property="og:site_name" content="" />
+    <meta
+      property="og:image"
+      content="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f995.png"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kawarimidoll" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"
@@ -26,6 +40,12 @@
       #output {
         width: 100%;
       }
+      p > img {
+        height: 1em;
+        width: 1em;
+        margin: 0 0.05em 0 0.1em;
+        vertical-align: -0.1em;
+      }
     </style>
     <script
       src="https://cdn.jsdelivr.net/npm/lodash.throttle@4.1.1/index.js"
@@ -35,7 +55,16 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>emoji to twemoji</h1>
+    <h1>deno-twemoji-convert</h1>
+    <p>
+      Convert emoji 🦕 to twemoji
+      <img
+        src="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f995.png"
+        alt="sauropod"
+      />
+      by Deno
+      <img src="https://icongr.am/simple/deno.svg" alt="deno" />
+    </p>
     <div>
       <a
         href="https://github.com/kawarimidoll/deno-twemoji-convert"
