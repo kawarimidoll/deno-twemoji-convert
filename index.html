@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>twemoji-converter</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f995.png"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/lodash.throttle@4.1.1/index.js"
+      integrity="sha256-m13GsKcGFwTP10cEqo3YWo0MgWutoozxy0k1Mf0lRxI="
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <h1>twemoji-converter</h1>
+    <div>
+      <input
+        id="input"
+        placeholder="input your emoji"
+        maxlength="2"
+        required
+        autofocus
+      />
+    </div>
+    <div><input id="output" readonly /></div>
+    <img id="img" />
+  </body>
+</html>
