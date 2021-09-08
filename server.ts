@@ -23,7 +23,7 @@ async function handler(request: Request) {
       return await handleRoot();
     case "/api":
       return await handleApi(searchParams);
-    case "/index.js":
+    case "/script.js":
       return await handleJs();
   }
   return handle404();

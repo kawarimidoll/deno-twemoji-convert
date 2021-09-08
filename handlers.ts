@@ -19,7 +19,7 @@ export function handle404() {
 }
 
 export async function handleJs() {
-  const src = await Deno.readTextFile("./index.js");
+  const src = await Deno.readTextFile("./script.js");
   return new Response(src, { headers: { "content-type": "text/javascript" } });
 }
 
