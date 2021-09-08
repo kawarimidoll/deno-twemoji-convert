@@ -4,7 +4,7 @@ const output = document.getElementById("output");
 
 const callAPI = async () => {
   if (!input.value) {
-    output.value = "Here will be twemoji URL!";
+    output.value = "";
     img.src = "";
     return;
   }
@@ -17,6 +17,12 @@ const callAPI = async () => {
     output.value = "There is no such twemoji...";
     img.src = "";
   }
+};
+
+// deno-lint-ignore no-unused-vars
+const copyURL = () => {
+  output.select();
+  document.execCommand("Copy");
 };
 
 document

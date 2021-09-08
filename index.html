@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>twemoji-converter</title>
+    <title>emoji to twemoji</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"
+    />
     <link
       rel="icon"
       type="image/png"
       href="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f995.png"
     />
+    <style>
+      body {
+        text-align: center;
+      }
+      input {
+        margin: 0 auto;
+      }
+      div {
+        margin: 0 1rem;
+      }
+      #output {
+        width: 100%;
+      }
+    </style>
     <script
       src="https://cdn.jsdelivr.net/npm/lodash.throttle@4.1.1/index.js"
       integrity="sha256-m13GsKcGFwTP10cEqo3YWo0MgWutoozxy0k1Mf0lRxI="
@@ -17,17 +35,23 @@
     <script src="index.js" defer></script>
   </head>
   <body>
-    <h1>twemoji-converter</h1>
+    <h1>emoji to twemoji</h1>
     <div>
-      <input
-        id="input"
-        placeholder="input your emoji"
-        maxlength="2"
-        required
-        autofocus
-      />
+      <a
+        href="https://github.com/kawarimidoll/deno-twemoji-convert"
+        target="_blank"
+        rel="noopener noreferrer"
+        >View on Github</a
+      >
     </div>
-    <div><input id="output" readonly /></div>
+    <div>
+      <p>↓ Input emoji here ↓</p>
+      <input id="input" maxlength="2" required autofocus />
+    </div>
+    <div>
+      <p>↓ Twemoji URL will be here (click to copy) ↓</p>
+      <input id="output" readonly onclick="copyURL()" />
+    </div>
     <img id="img" />
   </body>
 </html>
