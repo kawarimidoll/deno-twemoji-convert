@@ -11,11 +11,12 @@ if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
 async function handleConn(conn: Deno.Conn) {
   const httpConn = Deno.serveHttp(conn);
   for await (const e of httpConn) {
-    e.respondWith(handler(e.request));
+    const [bodyInit, responseInit] = await genResponseArgs(e.request);
+    e.respondWith(new Response(bodyInit, responseInit));
   }
 }
 
-async function handler(request: Request) {
+async function genResponseArgs(request: Request) {
   const { pathname, searchParams } = new URL(request.url);
 
   switch (pathname) {

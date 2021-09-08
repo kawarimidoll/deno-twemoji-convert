@@ -4,35 +4,39 @@ export function errResponse(
   status: number,
   statusText: string,
   init?: ResponseInit,
-) {
+): [BodyInit, ResponseInit] {
   init = { status, statusText, ...(init || {}) };
-  return new Response(`${status}: ${statusText}`, init);
+  return [`${status}: ${statusText}`, init];
 }
 
-export async function handleRoot() {
+export async function handleRoot(): Promise<[BodyInit, ResponseInit]> {
   const html = await Deno.readTextFile("./index.html");
-  return new Response(html, { headers: { "content-type": "text/html" } });
+  return [html, { headers: { "content-type": "text/html" } }];
 }
 
-export function handle404() {
-  return errResponse(404, "Not found.");
+export function handle404(): [BodyInit, ResponseInit] {
+  return errResponse(404, "Not found");
 }
 
-export async function handleJs() {
+export async function handleJs(): Promise<[BodyInit, ResponseInit]> {
   const src = await Deno.readTextFile("./script.js");
-  return new Response(src, { headers: { "content-type": "text/javascript" } });
+  return [src, { headers: { "content-type": "text/javascript" } }];
 }
 
-export async function handleApi(searchParams: URLSearchParams) {
+export async function handleApi(
+  searchParams: URLSearchParams,
+): Promise<[BodyInit, ResponseInit]> {
   const emoji = searchParams.get("emoji");
   if (!emoji) {
-    return errResponse(400, "Invalid emoji parameter.");
+    return errResponse(400, "Invalid emoji parameter");
   }
+
   let version = searchParams.get("version") || "";
   if (!/^\d+\.\d+\.\d$/.test(version)) {
     // use latest version
     version = "13.1.0";
   }
+
   const p = [...emoji].map((x) => x.codePointAt(0)?.toString(16))[0];
   console.log({ emoji, version, p });
 
@@ -42,7 +46,7 @@ export async function handleApi(searchParams: URLSearchParams) {
   // confirm to close resource
   await res.text();
   if (res.ok) {
-    return new Response(twemojiURL);
+    return [twemojiURL, {}];
   }
-  return errResponse(400, "Invalid emoji parameter.");
+  return errResponse(400, "Invalid emoji parameter");
 }
