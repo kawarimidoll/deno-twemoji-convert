@@ -1,26 +1,14 @@
-# deno-dev-template
+# deno-twemoji-convert
 
-[![ci](https://github.com/kawarimidoll/deno-dev-template/workflows/ci/badge.svg)](.github/workflows/ci.yml)
+[![ci](https://github.com/kawarimidoll/deno-twemoji-convert/workflows/ci/badge.svg)](.github/workflows/ci.yml)
 [![deno.land](https://img.shields.io/badge/deno-%5E1.0.0-green?logo=deno)](https://deno.land)
 [![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
-my deno template
+Convert emoji to twemoji by Deno🦕
 
-## Setup
+🥳 →
+<img src="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f973.png" alt="partying" style="height:1rem;">
 
-Need to install [Velociraptor](https://velociraptor.run/).
-
-Confirm there is `~/.deno/bin` in `$PATH` to use the scripts installed by
-`deno install`.
-
-```
-$ # install velociraptor
-$ deno install -qAn vr https://deno.land/x/velociraptor/cli.ts
-$ # install hook
-$ vr
-```
-
-The scripts are defined in [velociraptor.yml](velociraptor.yml).
-
-[![deploy](https://deno.com/deno-deploy-button.svg)](https://cloudy-owl-71.deno.dev/)
+Running on:
+[![deploy](https://deno.com/deno-deploy-button.svg)](https://twemoji.deno.dev/)
