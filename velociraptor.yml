@@ -1,12 +1,3 @@
-# allow:
-#   - write
-#   - read
-#   - net
-#   - env
-
-# envFile:
-#   - .env
-
 scripts:
   main:
     desc: Runs main script
@@ -45,7 +36,7 @@ scripts:
 
   test:
     desc: Runs the tests
-    cmd: deno test --reload
+    cmd: deno test --reload --allow-read --allow-net
     gitHook: pre-push
 
   cov:
