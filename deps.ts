@@ -1,4 +1,4 @@
 export {
   assert,
   assertEquals,
-} from "https://deno.land/std@0.141.0/testing/asserts.ts";
+} from "https://deno.land/std@0.143.0/testing/asserts.ts";
