@@ -70,6 +70,9 @@ Deno.test("[handleApi] successful", async () => {
   params.set("emoji", "🦕");
   assertEquals(
     await handleApi(params),
-    ["https://twemoji.maxcdn.com/v/13.1.0/72x72/1f995.png", {}],
+    [
+      "https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png",
+      {},
+    ],
   );
 });
