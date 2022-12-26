@@ -6,7 +6,7 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 Convert emoji 🦕 to twemoji
-<img src="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f995.png" alt="sauropod" style="height: 1em;width: 1em;margin: 0 0.05em 0 0.1em;vertical-align: -0.1em;">
+<img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png" alt="sauropod" style="height: 1em;width: 1em;margin: 0 0.05em 0 0.1em;vertical-align: -0.1em;">
 by Deno
 <img src="https://icongr.am/simple/deno.svg" alt="deno" style="height: 1em;width: 1em;margin: 0 0.05em 0 0.1em;vertical-align: -0.1em;">
 
