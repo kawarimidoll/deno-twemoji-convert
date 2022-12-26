@@ -35,7 +35,7 @@ export async function handleApi(
   console.log({ emoji, codePoint });
 
   const twemojiURL =
-    `https://twemoji.maxcdn.com/v/${VERSION}/72x72/${codePoint}.png`;
+    `https://cdn.jsdelivr.net/gh/twitter/twemoji@${VERSION}/assets/72x72/${codePoint}.png`;
 
   const res = await fetch(twemojiURL);
   // confirm to close resource
