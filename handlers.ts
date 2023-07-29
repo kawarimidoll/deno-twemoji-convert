@@ -1,5 +1,3 @@
-const VERSION = "13.1.0";
-
 export function errResponse(
   status: number,
   statusText: string,
@@ -35,7 +33,7 @@ export async function handleApi(
   console.log({ emoji, codePoint });
 
   const twemojiURL =
-    `https://cdn.jsdelivr.net/gh/twitter/twemoji@${VERSION}/assets/72x72/${codePoint}.png`;
+    `https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/${codePoint}.png`;
 
   const res = await fetch(twemojiURL);
   // confirm to close resource
