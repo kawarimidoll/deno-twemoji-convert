@@ -1,32 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>deno-twemoji-convert</title>
-    <meta property="og:url" content="https://twemoji.deno.dev/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="deno-twemoji-convert" />
-    <meta
-      property="og:description"
-      content="Convert emoji to twemoji by Deno🦕"
-    />
-    <meta property="og:site_name" content="deno-twemoji-convert" />
-    <meta
-      property="og:image"
-      content="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@kawarimidoll" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png"
-    />
+    <meta property="og:url" content="https://twemoji.deno.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="deno-twemoji-convert">
+    <meta property="og:description" content="Convert emoji to twemoji by Deno 🦕">
+    <meta property="og:site_name" content="deno-twemoji-convert">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@kawarimidoll">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png">
     <style>
       body {
         text-align: center;
@@ -37,9 +24,27 @@
       div {
         margin: 0 1rem;
       }
-      a {
+      .separator {
         display: inline-block;
-        margin: 0 0.5rem;
+        width: 1rem;
+      }
+      .relative {
+        position: relative;
+      }
+      #copy-feedback {
+        position: absolute;
+        margin: 0;
+        bottom: 0.5rem;
+        right: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+        &.show {
+          opacity: 1;
+        }
+      }
+      #img-area {
+        height: 5.5rem;
       }
       #img {
         display: block;
@@ -61,35 +66,33 @@
     <h1>deno-twemoji-convert</h1>
     <p>
       Convert emoji 🦕 to twemoji
-      <img
-        src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png"
-        alt="sauropod"
-      />
+      <img src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/1f995.png" alt="sauropod" height="72" width="72" decoding="async">
       by Deno
-      <img src="https://icongr.am/simple/deno.svg" alt="deno" />
+      <img src="https://icongr.am/simple/deno.svg" alt="deno" height="72" width="72" decoding="async">
     </p>
     <div>
-      <a
-        href="https://github.com/kawarimidoll/deno-twemoji-convert"
-        target="_blank"
-        rel="noopener noreferrer"
-        >View on Github</a
-      >
-      <a
-        href="https://twitter.com/intent/tweet?text=deno-twemoji-convert&url=https%3A%2F%2Ftwemoji.deno.dev&hashtags=Deno"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Share on Twitter</a
-      >
+      <a href="https://github.com/kawarimidoll/deno-twemoji-convert" target="_blank" rel="noopener noreferrer">View on Github</a>
+      <span class="separator"></span>
+      <a href="https://twitter.com/intent/tweet?text=deno-twemoji-convert&amp;url=https%3A%2F%2Ftwemoji.deno.dev&amp;hashtags=Deno" target="_blank" rel="noopener noreferrer">Share on Twitter</a>
     </div>
     <div>
-      <p>↓ Input emoji here ↓</p>
-      <input id="input" aria-label="input" maxlength="2" required autofocus />
+      <p>↓ Input emoji here↓</p>
+      <input id="input" aria-label="input" maxlength="2" required autofocus>
     </div>
-    <div>
+    <div class="relative">
       <p>↓ Twemoji URL will be here (click to copy) ↓</p>
-      <input id="output" aria-label="output" readonly onclick="copyURL()" />
+      <input id="output" aria-label="output" readonly>
+      <div id="copy-feedback">Copied!</div>
     </div>
-    <img id="img" />
+    <div id="img-area">
+      <img id="img">
+    </div>
+    <div>
+      <p>
+        <img src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/1f4a1.png" alt="bulb" height="72" width="72" decoding="async">
+        Protip: You can use this via API as
+        <a href="./api?emoji=🦕" target="_blank" rel="noopener noreferrer">https://twemoji.deno.dev/api?emoji=🦕</a>
+      </p>
+    </div>
   </body>
 </html>

@@ -1,6 +1,7 @@
 const img = document.getElementById("img");
 const input = document.getElementById("input");
 const output = document.getElementById("output");
+const copyFeedback = document.getElementById("copy-feedback");
 
 let lastInput = "";
 
@@ -23,11 +24,22 @@ const callAPI = async () => {
   }
 };
 
-// deno-lint-ignore no-unused-vars
-const copyURL = () => {
+output.addEventListener("click", () => {
+  if (!img.src) return;
+
   output.select();
-  document.execCommand("Copy");
-};
+
+  const clipboard = navigator.clipboard || window.clipboard;
+  clipboard.writeText(output.value)
+    .then(() => {
+      copyFeedback.classList.add("show");
+    })
+    .then(() =>
+      setTimeout(() => {
+        copyFeedback.classList.remove("show");
+      }, 1000)
+    );
+});
 
 globalThis.addEventListener("load", (_event) => {
   setInterval(callAPI, 1000);
