@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -11,7 +11,7 @@
       property="og:description"
       content="Convert emoji to twemoji by Deno🦕"
     />
-    <meta property="og:site_name" content="" />
+    <meta property="og:site_name" content="deno-twemoji-convert" />
     <meta
       property="og:image"
       content="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png"
@@ -55,11 +55,6 @@
         vertical-align: -0.1em;
       }
     </style>
-    <script
-      src="https://cdn.jsdelivr.net/npm/lodash.throttle@4.1.1/index.js"
-      integrity="sha256-m13GsKcGFwTP10cEqo3YWo0MgWutoozxy0k1Mf0lRxI="
-      crossorigin="anonymous"
-    ></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -89,11 +84,11 @@
     </div>
     <div>
       <p>↓ Input emoji here ↓</p>
-      <input id="input" maxlength="2" required autofocus />
+      <input id="input" aria-label="input" maxlength="2" required autofocus />
     </div>
     <div>
       <p>↓ Twemoji URL will be here (click to copy) ↓</p>
-      <input id="output" readonly onclick="copyURL()" />
+      <input id="output" aria-label="output" readonly onclick="copyURL()" />
     </div>
     <img id="img" />
   </body>

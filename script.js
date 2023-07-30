@@ -2,7 +2,11 @@ const img = document.getElementById("img");
 const input = document.getElementById("input");
 const output = document.getElementById("output");
 
+let lastInput = "";
+
 const callAPI = async () => {
+  if (lastInput === input.value) return;
+  lastInput = input.value;
   if (!input.value) {
     output.value = "";
     img.src = "";
@@ -25,8 +29,6 @@ const copyURL = () => {
   document.execCommand("Copy");
 };
 
-document
-  .getElementById("input")
-  .addEventListener("input", window.throttle(callAPI, 2000));
-
-callApi();
+globalThis.addEventListener("load", (_event) => {
+  setInterval(callAPI, 1000);
+});
