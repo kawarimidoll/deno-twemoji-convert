@@ -1,20 +1,4 @@
-/// <reference path="./_deploy.d.ts" />
-
 import { handle404, handleApi, handleJs, handleRoot } from "./handlers.ts";
-
-const listener = Deno.listen({ port: 8080 });
-if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
-  const { hostname, port } = listener.addr;
-  console.log(`HTTP server listening on http://${hostname}:${port}`);
-}
-
-async function handleConn(conn: Deno.Conn) {
-  const httpConn = Deno.serveHttp(conn);
-  for await (const e of httpConn) {
-    const [bodyInit, responseInit] = await genResponseArgs(e.request);
-    e.respondWith(new Response(bodyInit, responseInit));
-  }
-}
 
 async function genResponseArgs(request: Request) {
   const { pathname, searchParams } = new URL(request.url);
@@ -30,6 +14,7 @@ async function genResponseArgs(request: Request) {
   return handle404();
 }
 
-for await (const conn of listener) {
-  handleConn(conn);
-}
+Deno.serve(async (request: Request) => {
+  const [bodyInit, responseInit] = await genResponseArgs(request);
+  return new Response(bodyInit, responseInit);
+});
