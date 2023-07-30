@@ -1,10 +1,9 @@
 export function errResponse(
   status: number,
   statusText: string,
-  init?: ResponseInit,
+  init: ResponseInit = {},
 ): [BodyInit, ResponseInit] {
-  init = { status, statusText, ...(init || {}) };
-  return [`${status}: ${statusText}`, init];
+  return [`${status}: ${statusText}`, { status, statusText, ...init }];
 }
 
 export async function handleRoot(): Promise<[BodyInit, ResponseInit]> {
