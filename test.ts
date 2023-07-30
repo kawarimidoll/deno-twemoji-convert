@@ -71,7 +71,7 @@ Deno.test("[handleApi] successful", async () => {
   assertEquals(
     await handleApi(params),
     [
-      "https://cdn.jsdelivr.net/gh/twitter/twemoji@13.1.0/assets/72x72/1f995.png",
+      "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/1f995.png",
       {},
     ],
   );
