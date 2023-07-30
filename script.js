@@ -25,7 +25,7 @@ const callAPI = async () => {
 };
 
 output.addEventListener("click", () => {
-  if (!img.src) return;
+  if (!output.value.startsWith("https")) return;
 
   output.select();
 
