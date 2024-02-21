@@ -79,6 +79,19 @@
       <p>↓ Input emoji here↓</p>
       <input id="input" aria-label="input" maxlength="2" required autofocus>
     </div>
+    <div>
+      <p>
+        <span>Image type:</span>
+        <span>
+          <input type="radio" id="radio-png" name="ext" value="png" checked>
+          <label for="radio-png">png</label>
+        </span>
+        <span>
+          <input type="radio" id="radio-svg" name="ext" value="svg">
+          <label for="radio-svg">svg</label>
+        </span>
+      </p>
+    </div>
     <div class="relative">
       <p>↓ Twemoji URL will be here (click to copy) ↓</p>
       <input id="output" aria-label="output" readonly>

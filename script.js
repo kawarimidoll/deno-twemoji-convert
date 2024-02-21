@@ -1,13 +1,17 @@
 const img = document.getElementById("img");
 const input = document.getElementById("input");
 const output = document.getElementById("output");
+const radioPng = document.getElementById("radio-png");
+const radioSvg = document.getElementById("radio-svg");
 const copyFeedback = document.getElementById("copy-feedback");
 
 let lastInput = "";
+let lastPng = true;
 
 const callAPI = async () => {
-  if (lastInput === input.value) return;
+  if (lastInput === input.value && lastPng === radioPng.checked) return;
   lastInput = input.value;
+  lastPng = radioPng.checked;
   if (!input.value) {
     output.value = "";
     img.src = "";
@@ -18,6 +22,9 @@ const callAPI = async () => {
     const src = await res.text();
     output.value = src;
     img.src = src;
+    if (radioSvg.checked) {
+      output.value = src.replace(/72x72|png/g, "svg");
+    }
   } else {
     output.value = "There is no such twemoji...";
     img.src = "";
