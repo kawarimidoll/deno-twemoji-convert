@@ -6,18 +6,29 @@ export function errResponse(
   return [`${status}: ${statusText}`, { status, statusText, ...init }];
 }
 
-export async function handleRoot(): Promise<[BodyInit, ResponseInit]> {
-  const html = await Deno.readTextFile("./index.html");
-  return [html, { headers: { "content-type": "text/html" } }];
-}
+const contentTypes = {
+  html: "text/html",
+  css: "text/css",
+  js: "text/javascript",
+};
 
-export function handle404(): [BodyInit, ResponseInit] {
-  return errResponse(404, "Not found");
-}
+export async function handleFile(pathname): Promise<[BodyInit, ResponseInit]> {
+  const filename = pathname.endsWith("/")
+    ? "index.html"
+    : pathname.replace(/^\//, "");
+  const ext = filename.match(/\.(\w+)$/)?.[1] || "";
 
-export async function handleJs(): Promise<[BodyInit, ResponseInit]> {
-  const src = await Deno.readTextFile("./script.js");
-  return [src, { headers: { "content-type": "text/javascript" } }];
+  try {
+    const src = await Deno.readTextFile(filename);
+    return [src, { headers: { "content-type": contentTypes[ext] } }];
+  } catch (e) {
+    console.warn(e);
+    if (e.name === "NotFound") {
+      return errResponse(404, "Not found");
+    }
+
+    return errResponse(400, "Something went wrong");
+  }
 }
 
 export async function handleApi(

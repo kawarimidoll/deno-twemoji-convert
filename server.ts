@@ -1,17 +1,12 @@
-import { handle404, handleApi, handleJs, handleRoot } from "./handlers.ts";
+import { handleApi, handleFile } from "./handlers.ts";
 
 async function genResponseArgs(request: Request) {
   const { pathname, searchParams } = new URL(request.url);
 
-  switch (pathname) {
-    case "/":
-      return await handleRoot();
-    case "/api":
-      return await handleApi(searchParams);
-    case "/script.js":
-      return await handleJs();
+  if (pathname === "/api") {
+    return await handleApi(searchParams);
   }
-  return handle404();
+  return await handleFile(pathname);
 }
 
 Deno.serve(async (request: Request) => {
