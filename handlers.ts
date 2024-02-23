@@ -1,4 +1,4 @@
-export function errResponse(
+export function handleError(
   status: number,
   statusText: string,
   init: ResponseInit = {},
@@ -12,23 +12,10 @@ const contentTypes = {
   js: "text/javascript",
 };
 
-export async function handleFile(pathname): Promise<[BodyInit, ResponseInit]> {
-  const filename = pathname.endsWith("/")
-    ? "index.html"
-    : pathname.replace(/^\//, "");
+export async function handleFile(filename): Promise<[BodyInit, ResponseInit]> {
   const ext = filename.match(/\.(\w+)$/)?.[1] || "";
-
-  try {
-    const src = await Deno.readTextFile(filename);
-    return [src, { headers: { "content-type": contentTypes[ext] } }];
-  } catch (e) {
-    console.warn(e);
-    if (e.name === "NotFound") {
-      return errResponse(404, "Not found");
-    }
-
-    return errResponse(400, "Something went wrong");
-  }
+  const src = await Deno.readTextFile(filename);
+  return [src, { headers: { "content-type": contentTypes[ext] } }];
 }
 
 export async function handleApi(
@@ -36,7 +23,7 @@ export async function handleApi(
 ): Promise<[BodyInit, ResponseInit]> {
   const emoji = searchParams.get("emoji");
   if (!emoji) {
-    return errResponse(400, "Invalid emoji parameter");
+    return handleError(400, "Invalid emoji parameter");
   }
 
   const codePoint = [...emoji].map((x) => x.codePointAt(0)?.toString(16))[0];
@@ -51,5 +38,5 @@ export async function handleApi(
   if (res.ok) {
     return [twemojiURL, {}];
   }
-  return errResponse(400, "Invalid emoji parameter");
+  return handleError(400, "Invalid emoji parameter");
 }
