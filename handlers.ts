@@ -6,13 +6,15 @@ export function handleError(
   return [`${status}: ${statusText}`, { status, statusText, ...init }];
 }
 
-const contentTypes = {
+const contentTypes: Record<string, string> = {
   html: "text/html",
   css: "text/css",
   js: "text/javascript",
 };
 
-export async function handleFile(filename): Promise<[BodyInit, ResponseInit]> {
+export async function handleFile(
+  filename: string,
+): Promise<[BodyInit, ResponseInit]> {
   const ext = filename.match(/\.(\w+)$/)?.[1] || "";
   const src = await Deno.readTextFile(filename);
   return [src, { headers: { "content-type": contentTypes[ext] } }];
