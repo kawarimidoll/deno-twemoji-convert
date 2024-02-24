@@ -1,32 +1,19 @@
 import { assert, assertEquals } from "./deps.ts";
-import {
-  errResponse,
-  handle404,
-  handleApi,
-  handleJs,
-  handleRoot,
-} from "./handlers.ts";
+import { handleApi, handleError, handleFile } from "./handlers.ts";
 
 // disable log
 console.log = (..._args: unknown[]) => {};
 
-Deno.test("[errResponse] 404: Not found", () => {
+Deno.test("[handleError] 404: Not found", () => {
   assertEquals(
-    errResponse(404, "Not found"),
+    handleError(404, "Not found"),
     ["404: Not found", { status: 404, statusText: "Not found" }],
   );
 });
 
-Deno.test("[handle404] 404: Not found", () => {
-  assertEquals(
-    handle404(),
-    ["404: Not found", { status: 404, statusText: "Not found" }],
-  );
-});
-
-Deno.test("[handleRoot] successful", async () => {
+Deno.test("[handleFile] successful html", async () => {
   // no test about contents
-  const [html, init] = await handleRoot();
+  const [html, init] = await handleFile("index.html");
   assert(html);
   assertEquals(
     init,
@@ -34,9 +21,9 @@ Deno.test("[handleRoot] successful", async () => {
   );
 });
 
-Deno.test("[handleJs] successful", async () => {
+Deno.test("[handleFile] successful js", async () => {
   // no test about contents
-  const [js, init] = await handleJs();
+  const [js, init] = await handleFile("script.js");
   assert(js);
   assertEquals(
     init,
