@@ -1,4 +1,4 @@
-import { assert, assertEquals } from "./deps.ts";
+import { assert, assertEquals } from "@std/assert";
 import { handleApi, handleError, handleFile } from "./handlers.ts";
 
 // disable log
