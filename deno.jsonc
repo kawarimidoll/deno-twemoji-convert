@@ -1,3 +1,12 @@
 {
-  "imports": { "@std/assert": "jsr:@std/assert@^0.226.0" }
+  "imports": { "@std/assert": "jsr:@std/assert@^0.226.0" },
+  "tasks": {
+    "run": "deno run --allow-net=0.0.0.0:8000,cdn.jsdelivr.net --allow-read=. --watch server.ts",
+
+    "test": "deno test --reload --allow-net=cdn.jsdelivr.net --allow-read=. --allow-none",
+    "cov": "deno task test --coverage=cov_profile; deno coverage cov_profile",
+    "lint": "deno lint --ignore=cov_profile",
+    "fmt": "deno fmt --ignore=cov_profile",
+    "ci": "deno task lint && deno task fmt --check && deno task test"
+  }
 }
