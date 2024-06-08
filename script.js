@@ -43,6 +43,7 @@ output.addEventListener("click", () => {
 
   output.select();
 
+  // deno-lint-ignore no-window
   const clipboard = navigator.clipboard || window.clipboard;
   clipboard.writeText(output.value)
     .then(() => {
