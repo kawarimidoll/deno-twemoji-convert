@@ -3,6 +3,8 @@
   "tasks": {
     "run": "deno run --allow-net=0.0.0.0:8000,cdn.jsdelivr.net --allow-read=. --watch server.ts",
 
+    "update": "deno run --allow-env --allow-read --allow-write=. --allow-run=git,deno --allow-net=jsr.io jsr:@molt/cli deno.jsonc --write",
+
     "test": "deno test --reload --allow-net=cdn.jsdelivr.net --allow-read=. --allow-none",
     "cov": "deno task test --coverage=cov_profile; deno coverage cov_profile",
     "lint": "deno lint --ignore=cov_profile",
