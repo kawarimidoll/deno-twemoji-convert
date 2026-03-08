@@ -63,3 +63,27 @@ Deno.test("[handleApi] successful", async () => {
     ],
   );
 });
+
+Deno.test("[handleApi] flag emoji", async () => {
+  const params = new URLSearchParams();
+  params.set("emoji", "🇯🇵");
+  assertEquals(
+    await handleApi(params),
+    [
+      "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/1f1ef-1f1f5.png",
+      {},
+    ],
+  );
+});
+
+Deno.test("[handleApi] ZWJ emoji", async () => {
+  const params = new URLSearchParams();
+  params.set("emoji", "👨‍👩‍👧‍👦");
+  assertEquals(
+    await handleApi(params),
+    [
+      "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/1f468-200d-1f469-200d-1f467-200d-1f466.png",
+      {},
+    ],
+  );
+});

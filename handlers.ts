@@ -28,7 +28,10 @@ export async function handleApi(
     return handleError(400, "Invalid emoji parameter");
   }
 
-  const codePoint = [...emoji].map((x) => x.codePointAt(0)?.toString(16))[0];
+  const codePoint = [...emoji]
+    .filter((x) => x !== "\uFE0F")
+    .map((x) => x.codePointAt(0)!.toString(16))
+    .join("-");
   console.log({ emoji, codePoint });
 
   const twemojiURL =
