@@ -1,7 +1,7 @@
 # deno-twemoji-convert
 
 [![ci](https://github.com/kawarimidoll/deno-twemoji-convert/workflows/ci/badge.svg)](.github/workflows/ci.yml)
-[![deno.land](https://img.shields.io/badge/deno-%5E1.13.0-green?logo=deno)](https://deno.land)
+[![deno.land](https://img.shields.io/badge/deno-%5E2.0.0-green?logo=deno)](https://deno.land)
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 Convert emoji 🦕 to twemoji
