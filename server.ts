@@ -15,7 +15,7 @@ async function genResponseArgs(request: Request) {
   if (allowedPathList.includes(pathname)) {
     const filename = pathname === "/"
       ? "index.html"
-      : pathname.replace("/", "");
+      : pathname.slice(1);
     return await handleFile(filename);
   }
   return handleError(404, "Not found");
