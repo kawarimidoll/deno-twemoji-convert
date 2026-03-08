@@ -13,9 +13,7 @@ async function genResponseArgs(request: Request) {
     return await handleApi(searchParams);
   }
   if (allowedPathList.includes(pathname)) {
-    const filename = pathname === "/"
-      ? "index.html"
-      : pathname.slice(1);
+    const filename = pathname === "/" ? "index.html" : pathname.slice(1);
     return await handleFile(filename);
   }
   return handleError(404, "Not found");
