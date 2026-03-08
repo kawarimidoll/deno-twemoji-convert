@@ -37,9 +37,7 @@ export async function handleApi(
   const twemojiURL =
     `https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/${codePoint}.png`;
 
-  const res = await fetch(twemojiURL);
-  // confirm to close resource
-  await res.text();
+  const res = await fetch(twemojiURL, { method: "HEAD" });
   if (res.ok) {
     return [twemojiURL, {}];
   }
